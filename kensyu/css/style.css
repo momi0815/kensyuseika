@@ -1,0 +1,207 @@
+@charset "utf-8";
+
+/* CSSを記述 START */
+/* スタイル全体のリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 全体の背景とレイアウト */
+body {
+    background-image: url('../image/DALL·E\ 2024-08-23\ 10.16.25\ -\ A\ visually\ captivating\ image\ of\ money\ floating\ in\ the\ air.\ The\ background\ should\ be\ a\ clear\,\ bright\ blue\ sky\ with\ soft\ clouds.\ The\ money\ bills\ are\ var.webp');
+    /* 背景画像のパス */
+    background-size: cover;
+    /* 画像を画面全体にフィットさせる */
+    background-position: center;
+    /* 画像を中央に配置 */
+    background-repeat: no-repeat;
+    /* 画像を繰り返さない */
+    background-attachment: fixed;
+    /* スクロール時に背景が固定される */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* メインコンテナ */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* タイトルのスタイル */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 入力フィールドとボタンのグループ */
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 1em;
+}
+
+/* 入力フィールドのスタイル */
+.input {
+    width: calc(70% - 10px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* ボタンのスタイル */
+.button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: calc(30% - 10px);
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+/* 参加者リスト */
+.participant-list {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.list-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#participantList li {
+    list-style-type: none;
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+/* 結果表示のスタイル */
+/* 結果表示エリア全体のスタイル */
+.result {
+    margin-top: 40px;
+    /* 上に余白を追加 */
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* 個々の結果のスタイル */
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    font-size: 0.67em;
+}
+
+.participant-name {
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    flex: 1;
+}
+
+.amount {
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    flex: 1;
+}
+
+/* ボタンのグループ配置 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 共通ボタンスタイル */
+.button {
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* width: calc(50% - 10px); - Removed to allow buttons to align horizontally */
+    flex: 1;
+    /* Added to ensure buttons expand equally and stay on one line */
+}
+
+/* スタートボタンのスタイル */
+.button.is-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.button.is-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 8px rgba(0, 91, 187, 0.2);
+    transform: translateY(-2px);
+}
+
+/* リセットボタンのスタイル */
+.button.is-secondary {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.button.is-secondary:hover {
+    background-color: #c82333;
+    box-shadow: 0 6px 8px rgba(220, 53, 69, 0.2);
+    transform: translateY(-2px);
+}
+
+/* メディアクエリ: モバイル対応 */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .input,
+    .button {
+        font-size: 14px;
+    }
+}

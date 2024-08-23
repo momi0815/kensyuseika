@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSSファイルの読み込み (css/style.css) -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- jQueryファイルの読み込み -->
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <!-- axiosファイルの読み込み -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>支払金額をランダムにして遊びたいよー</title>
+</head>
+
+<body>
+    <!-- HTMLの記述場所 START -->
+
+    <body>
+        <!--背景画像-->
+        <div class="photo"></div>
+        <!-- メインコンテナ -->
+        <div class="container">
+            <!-- タイトル -->
+            <h1>ランダム支払い君</h1>
+
+
+
+            <!-- 支払総金額入力 -->
+            <div class="input-group">
+                <input id="sum" class="input" type="text" placeholder="➀支払総金額を入力(円)">
+                <button id="money" class="button">入力</button>
+            </div>
+
+            <!-- 参加者入力 -->
+            <div class="input-group">
+                <input id="name" class="input" type="text" placeholder="➁参加者を入力→追加">
+                <button id="add" class="button">追加</button>
+            </div>
+
+            <!-- 参加者リスト -->
+            <div class="participant-list">
+                <p id="sanka" class="list-title">参加者</p>
+                <ul id="participantList"></ul>
+            </div>
+
+            <!-- ルーレットスタート -->
+            <div class="button-group">
+                <button id="roulette" class="button is-primary">スタート</button>
+                <button id="reset" class="button is-secondary">リセット</button>
+            </div>
+
+            <!-- 支払結果 -->
+            <div id="result" class="result">
+                <p id="kekka" class="result-title">支払金額</>
+            </div>
+        </div>
+    </body>
+    <!-- HTMLの記述場所 END -->
+    <script>
+        // JavaScriptの記述 START
+        //支払の総合金額をsum1として格納
+        $('#money').on('click', function () {
+            const sum1 = $('#sum').val();
+            console.log(sum1)
+        })
+
+        //名前を入れて入力すると参加者リストができる＋繰り返し数が増える
+        let a = 0
+        const list = []
+        $('#add').on('click', function () {
+            a = a + 1
+            const sankasya = $('#name').val()
+            $('#sanka').append("<li>" + sankasya + "</li>");
+            list.push(sankasya)
+            console.log(sankasya)
+            console.log(a)
+            console.log(list)
+        })
+
+        // 各参加者の支払金額を決める
+        $('#roulette').on('click', function () {
+            $('#kekka').html('<p id="kekka" class="result-title">支払金額</p>');
+            const kingaku = [];
+            let sum1 = $('#sum').val();
+
+            for (let i = 0; i <= a - 2; i++) {
+                let rate =  Math.random();
+                let pay = Math.floor(sum1 * rate);
+                pay = Math.round(pay/10)*10
+                sum1 = sum1 - pay;
+                kingaku.push(pay);
+            }
+
+            kingaku.push(sum1);
+
+            console.log(kingaku)
+
+            for (let i = kingaku.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1)); // 0 から i のランダムなインデックス
+                [kingaku[i], kingaku[j]] = [kingaku[j], kingaku[i]]; // 要素を入れ替えます
+            }
+
+            console.log(kingaku)
+
+            // 結果を表示する際に、金額をカンマ区切りにして表示
+            for (let i = 0; i < a; i++) {
+                $('#kekka').append(`
+            <div class="result-item">
+                <span class="participant-name">${list[i]}</span>
+                <span class="amount">${kingaku[i].toLocaleString('ja-JP')}円</span>
+            </div>
+        `);
+            }
+        });
+
+        // リセットボタンが押されたときの処理
+        $('#reset').on('click', function () {
+            // 入力フィールドをクリア
+            $('#sum').val('');
+            $('#name').val('');
+
+            // 参加者リストと結果表示をクリア
+            $('#sanka').html('参加者');
+            $('#kekka').html('支払結果');
+
+            // 変数のリセット
+            a = 0;
+            list.length = 0;
+
+            console.log('リセットが押されました');
+        });
+
+        // JavaScriptの記述 END
+    </script>
+
+</html>
